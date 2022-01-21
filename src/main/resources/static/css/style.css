@@ -1,0 +1,6 @@
+@media (min-width: 800px) {
+    body {
+        width: 800px;
+        margin: 0 auto;
+    }
+}
