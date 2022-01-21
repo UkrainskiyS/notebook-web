@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+/**
+ * Controller for web-pages
+ */
 
 @Controller
 @AllArgsConstructor
@@ -37,15 +37,7 @@ public class WebController {
 
     @GetMapping("/all")
     public String all(Model model) {
-        List<Note> noteList = getNotes();
-        noteList.addAll(service.noteList());
-        model.addAttribute("notes", noteList);
+        model.addAttribute("notes", service.noteList());
         return "note/all_notes";
-    }
-
-    private List<Note> getNotes() {
-        return IntStream.range(0, 10)
-                .mapToObj(i -> new Note("group_" + i, "name_" + i, "text_" + i))
-                .collect(Collectors.toList());
     }
 }
