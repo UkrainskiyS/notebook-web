@@ -44,9 +44,9 @@ public class WebController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping("/group/all")
     public String all(Model model) {
-        model.addAttribute("notes", service.getLastTen());
-        return "note/all_notes";
+        model.addAttribute("groups", service.getAllGroups());
+        return "group/all_groups";
     }
 }

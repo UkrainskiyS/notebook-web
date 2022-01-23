@@ -13,4 +13,5 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
 
     Group getByName(String name);
 
+    boolean existsByName(String name);
 }

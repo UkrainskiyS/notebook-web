@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public record WebService(NoteRepository noteRepository, GroupRepository groupRepository) {
@@ -29,11 +30,30 @@ public record WebService(NoteRepository noteRepository, GroupRepository groupRep
         return true;
     }
 
+    public List<String> searchNotes(String name) {
+        return noteRepository.findAllByNameContaining(name).stream()
+                .map(Note::toString)
+                .collect(Collectors.toList());
+    }
+
+    public boolean saveGroup(Group group) {
+        if (groupRepository.existsByName(group.getName())) {
+            return false;
+        } else {
+            groupRepository.save(group);
+            return true;
+        }
+    }
+
     public List<Note> getLastTen() {
         return noteRepository.findLastTen();
     }
 
     public List<String> getAllGroupNames() {
         return groupRepository.findAllNames();
+    }
+
+    public List<Group> getAllGroups() {
+        return groupRepository.findAll();
     }
 }

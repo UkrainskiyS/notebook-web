@@ -10,6 +10,8 @@ import java.util.List;
 public interface NoteRepository extends JpaRepository<Note, Long> {
     boolean existsByGroupAndName(Group group, String name);
 
+    List<Note> findAllByNameContaining(String name);
+
     @Query(value = "select * from notes order by last_update desc limit 10", nativeQuery = true)
     List<Note> findLastTen();
 }

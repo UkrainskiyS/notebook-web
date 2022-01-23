@@ -34,4 +34,12 @@ public class Note {
         this.name = name;
         this.text = text;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"group\": \"" + group.getName() +
+                "\", \"name\": \"" + name + '\"' +
+                '}';
+    }
 }

@@ -28,7 +28,7 @@
 
 <div class="container">
 
-    <h3 class="center-align"><span class="teal-text text-lighten-2">Last 10 notes</span></h3>
+    <h3 class="center-align"><span class="teal-text text-lighten-2">Your groups</span></h3>
     <ul class="collapsible expandable">
         <#list notes as note>
             <li>
@@ -38,9 +38,7 @@
         </#list>
     </ul>
 
-<#--    <li><a href="#modal1" class="modal-trigger" onclick="createGroup()">GROUPS</a></li>-->
-<#--    <div id="modal1" class="modal"></div>-->
-
+    <div id="modal1" class="modal"></div>
 </div>
 <script src="<@spring.url '/js/script.js'/>"></script>
 <script src="<@spring.url '/js/main.js'/>"></script>
