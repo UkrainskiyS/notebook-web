@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 @Getter
@@ -39,6 +40,11 @@ public class Note {
     public String getDateTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss dd.MM.yyyy");
         return dateTime.format(formatter);
+    }
+
+    public void update(String text) {
+        dateTime = LocalDateTime.now(ZoneId.of("Europe/Moscow"));
+        this.text = text;
     }
 
     @Override

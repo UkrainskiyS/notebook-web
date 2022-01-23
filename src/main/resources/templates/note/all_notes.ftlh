@@ -49,6 +49,7 @@
                         </div>
                         <div class="card-action">
                             <a class="teal-text" href="">SHOW</a>
+                            <a class="year-text" href="<@spring.url '/note/edit?note=${note.id}'/>">EDIT</a>
                             <a class="red-text" href="#" onclick="deleteNote(${note.id})">DELETE</a>
                         </div>
                     </div>

@@ -64,6 +64,16 @@ public class WebService {
         noteRepository.delete(noteRepository.getById(note));
     }
 
+    public Note getNote(Long id) {
+        return noteRepository.getById(id);
+    }
+
+    public void updateNote(Map<String, String> map) {
+        Note note = noteRepository.getById(Long.parseLong(map.get("id")));
+        note.update(map.get("text"));
+        noteRepository.save(note);
+    }
+
     public List<Note> getLastTen() {
         return noteRepository.findLastTen();
     }

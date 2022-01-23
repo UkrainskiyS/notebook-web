@@ -8,7 +8,7 @@
 <#import "/spring.ftl" as spring />
 <head>
     <meta charset="UTF-8">
-    <title>Create note</title>
+    <title>Edit note</title>
 </head>
 <body>
 <#-- SHAPKA -->
@@ -27,30 +27,30 @@
 
 <#-- REDACTOR -->
 <div class="container">
-    <h3 class="center-align"><span class="teal-text text-lighten-2">Create note</span></h3>
+    <h3 class="center-align"><span class="teal-text text-lighten-2">Edit note</span></h3>
 
-    <form class="input-field col s12" action="">
-    <p><label>
-        <select name="group" id="group">
-            <option value="" disabled selected>Choose your group</option>
-            <#list groups as group_name>
-                <option value="${group_name}">${group_name}</option>
-            </#list>
-        </select>
-    </label></p>
-    <div class="input-field col s6">
-        <label for="name">Name</label><input id="name" type="text">
-    </div>
-    <p><label><textarea id="text" name="text"></textarea></label></p>
+    <form class="col s12" action="">
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="group">Group</label><input disabled value="${note.group.name}" id="group" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input disabled value="${note.name}" id="name" type="text" class="validate"><label for="name">Name</label>
+            </div>
+        </div>
+        <p><label><textarea id="text" name="text">${note.text}</textarea></label></p>
     </form>
 
     <div class="row">
-        <a class="col s2 waves-effect waves-light btn modal-trigger" href="#modal1" onclick="getMessage()">Save</a>
+        <a class="col s2 waves-effect waves-light btn modal-trigger" href="#modal1" onclick="updateNote(${note.id})">Save</a>
         <a class="col s1 waves-effect waves-light btn red offset-s9" onclick="history.back();">cancel</a>
     </div>
 
-    <div id="modal1" class="modal red"></div>
+    <div id="modal1" class="modal"></div>
 </div>
+<script src="<@spring.url '/js/notes.js'/>"></script>
 <script src="<@spring.url '/js/main.js'/>"></script>
 <script src="<@spring.url '/js/new_note.js'/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

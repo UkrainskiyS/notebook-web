@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -38,5 +39,10 @@ public class RESTController {
     @GetMapping("/note/delete")
     public void deleteNote(@RequestParam Long id) {
         service.deleteNote(id);
+    }
+
+    @PostMapping("/note/update")
+    public void updateNote(@RequestBody Map<String, String> map) {
+        service.updateNote(map);
     }
 }

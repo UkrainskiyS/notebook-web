@@ -38,6 +38,12 @@ public class WebController {
         return "note/new_note";
     }
 
+    @GetMapping("/note/edit")
+    public String editNote(@RequestParam Long note, Model model) {
+        model.addAttribute("note", service.getNote(note));
+        return "note/edit_note";
+    }
+
     @PostMapping("/note/new")
     public ResponseEntity<?> saveNote(@RequestBody Map<String, String> request) {
         if (service.saveNote(request)) {
