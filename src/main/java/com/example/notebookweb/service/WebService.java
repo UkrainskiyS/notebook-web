@@ -86,6 +86,10 @@ public class WebService {
         return groupRepository.findAll();
     }
 
+    public List<Note> getAllGroupNotes(Long id) {
+        return noteRepository.findAllByGroup(groupRepository.getById(id));
+    }
+
     public List<Note> getAllNotes() {
         return noteRepository.findAll();
     }

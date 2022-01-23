@@ -1,14 +1,19 @@
 /**
  * DELETE NOTE
  * @param note
+ * @param mode
  * @returns {Promise<void>}
  */
-async function deleteNote(note) {
+async function deleteNote(note, mode) {
     await fetch('/api/note/delete?' + new URLSearchParams({
         id: note
     }))
         .then(function () {
-            window.location.replace('/note/all')
+            if (mode === "all") {
+                window.location.replace('/note/all');
+            } else {
+                window.location.replace('/note/group?group=' + mode);
+            }
         });
 }
 

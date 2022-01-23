@@ -16,7 +16,6 @@ import java.util.Map;
 public class RESTController {
     private WebService service;
 
-
     @GetMapping("/search")
     public List<String> search(@RequestParam String note) {
         return service.searchNotes(note);

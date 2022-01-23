@@ -18,7 +18,7 @@
             <a href="/" class="brand-logo">Note book</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="<@spring.url '/note/new'/>">NEW</a></li>
-                <li class="active"><a href="<@spring.url '/note/all'/>">NOTES</a></li>
+                <li><a href="<@spring.url '/note/all'/>">NOTES</a></li>
                 <li><a href="<@spring.url '/group/all'/>">GROUPS</a></li>
             </ul>
         </div>
@@ -26,17 +26,23 @@
 </nav>
 
 <div class="container">
-
     <#-- DESCRIPTION AND BUTTON NEW GROUP -->
-    <ul class="row">
-        <a href="<@spring.url '/note/new'/>" class="col s2 right waves-effect waves-light btn">new note</a>
+    <#if group??>
+        <h3 class="center-align"><span class="teal-text text-lighten-2">All notes group <i>${group.name}</i></span></h3>
+        <ul class="row">
+            <a href="<@spring.url '/note/new'/>" class="col s2 right waves-effect waves-light btn">new note</a>
+            <div class="input-field col s6 center">
+                <label for="search"></label><input type="text" id="search" onkeyup="searches()" placeholder="Search for names..">
+            </div>
+        </ul>
+        <#else>
+            <h3 class="center-align"><span class="teal-text text-lighten-2">Group empty!</span></h3>
+            <ul class="row">
+                <a href="<@spring.url '/note/new'/>" class="col s2 offset-s5 waves-effect waves-light btn">new note</a>
+            </ul>
+    </#if>
 
-        <div class="input-field col s6 center">
-            <label for="search"></label><input type="text" id="search" onkeyup="searches()" placeholder="Search for names..">
-        </div>
-    </ul>
-
-<#-- LIST NOTES -->
+    <#-- LIST NOTES -->
     <ul id="elements" class="row">
         <#list notes as note>
             <li>
@@ -50,7 +56,7 @@
                         <div class="card-action">
                             <a class="teal-text" href="">SHOW</a>
                             <a class="year-text" href="<@spring.url '/note/edit?note=${note.id}'/>">EDIT</a>
-                            <a class="red-text" href="#" onclick="deleteNote(${note.id}, 'all')">DELETE</a>
+                            <a class="red-text" href="#" onclick="deleteNote(${note.id}, ${group.id})">DELETE</a>
                         </div>
                     </div>
                 </div>

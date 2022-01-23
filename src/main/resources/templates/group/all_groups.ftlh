@@ -46,6 +46,7 @@
                                 <span class="element_name card-title">${group.name?upper_case}</span>
                             </div>
                             <div class="card-action">
+                                <a class="teal-text" href="<@spring.url '/note/group?group=${group.id}'/>">NOTES</a>
                                 <a class="red-text" href="#" onclick="deleteGroup(${group.id})">DELETE</a>
                             </div>
                         </div>

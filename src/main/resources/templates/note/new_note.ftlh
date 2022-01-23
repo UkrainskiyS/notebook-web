@@ -27,8 +27,6 @@
 
 <#-- REDACTOR -->
 <div class="container">
-    <h3 class="center-align"><span class="teal-text text-lighten-2">Create note</span></h3>
-
     <form class="input-field col s12" action="">
     <p><label>
         <select name="group" id="group">
