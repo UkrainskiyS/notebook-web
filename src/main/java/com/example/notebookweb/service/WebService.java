@@ -60,6 +60,10 @@ public class WebService {
         groupRepository.delete(group);
     }
 
+    public void deleteNote(Long note) {
+        noteRepository.delete(noteRepository.getById(note));
+    }
+
     public List<Note> getLastTen() {
         return noteRepository.findLastTen();
     }
@@ -70,5 +74,9 @@ public class WebService {
 
     public List<Group> getAllGroups() {
         return groupRepository.findAll();
+    }
+
+    public List<Note> getAllNotes() {
+        return noteRepository.findAll();
     }
 }

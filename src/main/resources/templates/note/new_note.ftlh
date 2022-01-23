@@ -17,7 +17,7 @@
         <div class="container">
             <a href="/" class="brand-logo">Note book</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="<@spring.url '/note/new'/>">NEW</a></li>
+                <li class="active"><a href="<@spring.url '/note/new'/>">NEW</a></li>
                 <li><a href="<@spring.url '/note/all'/>">NOTES</a></li>
                 <li><a href="<@spring.url '/group/all'/>">GROUPS</a></li>
             </ul>
@@ -58,9 +58,6 @@
 <script>
     let simplemde = new SimpleMDE();
     M.AutoInit(undefined);
-    $(document).ready(function() {
-        $('select').formSelect();
-    });
 </script>
 </body>
 </html>

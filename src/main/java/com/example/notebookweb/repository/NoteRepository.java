@@ -16,4 +16,6 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
     List<Note> findLastTen();
 
     void deleteAllByGroup(Group group);
+
+    void deleteById(Long id);
 }

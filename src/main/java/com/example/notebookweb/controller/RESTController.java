@@ -34,4 +34,9 @@ public class RESTController {
     public void deleteGroup(@RequestParam Long id) {
         service.deleteGroup(id);
     }
+
+    @GetMapping("/note/delete")
+    public void deleteNote(@RequestParam Long id) {
+        service.deleteNote(id);
+    }
 }

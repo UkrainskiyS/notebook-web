@@ -1,5 +1,7 @@
 package com.example.notebookweb.controller;
 
+import com.example.notebookweb.model.Group;
+import com.example.notebookweb.model.Note;
 import com.example.notebookweb.service.WebService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -45,8 +48,18 @@ public class WebController {
     }
 
     @GetMapping("/group/all")
-    public String all(Model model) {
-        model.addAttribute("groups", service.getAllGroups());
+    public String allGroups(Model model) {
+        model.addAttribute("groups", service.getAllGroups().stream()
+                .sorted(Comparator.comparing(Group::getName))
+                .collect(Collectors.toList()));
         return "group/all_groups";
+    }
+
+    @GetMapping("/note/all")
+    public String allNotes(Model model) {
+        model.addAttribute("notes", service.getAllNotes().stream()
+                .sorted(Comparator.comparing(Note::getName))
+                .collect(Collectors.toList()));
+        return "note/all_notes";
     }
 }

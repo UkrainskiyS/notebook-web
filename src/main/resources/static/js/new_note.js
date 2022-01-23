@@ -37,7 +37,8 @@ function messageOk() {
     $('#modal1').removeClass('red').append('<div id="modal_body"></div>');
     $('#modal_body').append('<div id="modal2" class="modal-content"></div><div id="modal3" class="modal-footer"></div>');
     $('#modal2').append('<h4 class="center-align">Success!</h4><p class="center-align">Note successfully saved!</p>');
-    $('#modal3').append('<a class="modal-close waves-effect waves-green btn-flat">Agree</a>')
+    $('#modal3').append('<a href="/note/all" id="save" class="modal-close waves-effect waves-green btn-flat">ALL NOTES</a>')
+        .append('<a class="modal-close waves-effect waves-green btn-flat">Agree</a>')
         .append('<a href="/" id="save" class="modal-close waves-effect waves-green btn-flat">Home page</a>');
 }
 

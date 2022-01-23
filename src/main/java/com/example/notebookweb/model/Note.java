@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -33,6 +34,11 @@ public class Note {
         this.dateTime = dateTime;
         this.name = name;
         this.text = text;
+    }
+
+    public String getDateTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss dd.MM.yyyy");
+        return dateTime.format(formatter);
     }
 
     @Override
