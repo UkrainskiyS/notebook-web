@@ -14,4 +14,6 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
 
     @Query(value = "select * from notes order by last_update desc limit 10", nativeQuery = true)
     List<Note> findLastTen();
+
+    void deleteAllByGroup(Group group);
 }

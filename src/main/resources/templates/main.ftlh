@@ -17,9 +17,8 @@
         <div class="container">
             <a href="/" class="brand-logo">Note book</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="<@spring.url '/note/new'/>">NOTES</a></li>
-            </ul>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="<@spring.url '/note/new'/>">NEW</a></li>
+                <li><a href="<@spring.url '/note/all'/>">NOTES</a></li>
                 <li><a href="<@spring.url '/group/all'/>">GROUPS</a></li>
             </ul>
         </div>
@@ -37,9 +36,6 @@
             </li>
         </#list>
     </ul>
-
-<#--    <li><a href="#modal1" class="modal-trigger" onclick="createGroup()">GROUPS</a></li>-->
-<#--    <div id="modal1" class="modal"></div>-->
 
 </div>
 <script src="<@spring.url '/js/script.js'/>"></script>

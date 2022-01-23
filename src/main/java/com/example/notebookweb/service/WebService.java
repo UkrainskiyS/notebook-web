@@ -5,6 +5,7 @@ import com.example.notebookweb.model.Note;
 import com.example.notebookweb.repository.GroupRepository;
 import com.example.notebookweb.repository.NoteRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -13,7 +14,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public record WebService(NoteRepository noteRepository, GroupRepository groupRepository) {
+@Transactional
+public class WebService {
+    private final NoteRepository noteRepository;
+    private final GroupRepository groupRepository;
+
+    public WebService(NoteRepository noteRepository, GroupRepository groupRepository) {
+        this.noteRepository = noteRepository;
+        this.groupRepository = groupRepository;
+    }
 
     public boolean saveNote(Map<String, String> request) {
         Group group = groupRepository.getByName(request.get("group"));
@@ -43,6 +52,12 @@ public record WebService(NoteRepository noteRepository, GroupRepository groupRep
             groupRepository.save(group);
             return true;
         }
+    }
+
+    public void deleteGroup(Long id) {
+        Group group = groupRepository.getById(id);
+        noteRepository.deleteAllByGroup(group);
+        groupRepository.delete(group);
     }
 
     public List<Note> getLastTen() {

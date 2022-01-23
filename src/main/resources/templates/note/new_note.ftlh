@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <#import "/spring.ftl" as spring />
-<link rel="stylesheet" href="<@spring.url '/css/style.scss'/>">
 <head>
     <meta charset="UTF-8">
     <title>Create note</title>
@@ -18,9 +17,8 @@
         <div class="container">
             <a href="/" class="brand-logo">Note book</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="<@spring.url '/note/new'/>">NOTES</a></li>
-            </ul>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="<@spring.url '/note/new'/>">NEW</a></li>
+                <li><a href="<@spring.url '/note/all'/>">NOTES</a></li>
                 <li><a href="<@spring.url '/group/all'/>">GROUPS</a></li>
             </ul>
         </div>

@@ -29,4 +29,9 @@ public class RESTController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/group/delete")
+    public void deleteGroup(@RequestParam Long id) {
+        service.deleteGroup(id);
+    }
 }
