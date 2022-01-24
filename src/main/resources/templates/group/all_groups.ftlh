@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -28,13 +28,18 @@
 <div class="container">
 
     <#-- DESCRIPTION AND BUTTON NEW GROUP -->
-    <ul class="row">
-        <button data-target="modal1" class="col s2 right btn modal-trigger" onclick="$('#modal_body').remove(); createGroup()">new group</button>
-
-        <div class="input-field col s6 center">
-            <label for="search"></label><input type="text" id="search" onkeyup="searches()" placeholder="Search for names..">
-        </div>
-    </ul>
+    <#if groups?size != 0>
+        <ul class="row">
+            <button data-target="modal1" class="col s2 right btn modal-trigger" onclick="$('#modal_body').remove(); createGroup()">new group</button>
+            <div class="input-field col s6 center">
+                <label for="search"></label><input type="text" id="search" onkeyup="searches()" placeholder="Search for names..">
+            </div>
+        </ul>
+        <#else>
+            <ul class="row">
+                <button data-target="modal1" class="col s2 offset-s5 btn modal-trigger" onclick="$('#modal_body').remove(); createGroup()">new group</button>
+            </ul>
+    </#if>
 
     <#-- LIST GROUPS -->
         <ul id="elements" class="row">

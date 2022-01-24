@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 public class Note {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
@@ -27,7 +27,7 @@ public class Note {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 3000)
     private String text;
 
     public Note(Group group, LocalDateTime dateTime, String name, String text) {

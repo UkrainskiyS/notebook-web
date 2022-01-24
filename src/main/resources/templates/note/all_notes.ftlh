@@ -29,11 +29,16 @@
 
     <#-- DESCRIPTION AND BUTTON NEW GROUP -->
     <ul class="row">
-        <a href="<@spring.url '/note/new'/>" class="col s2 right waves-effect waves-light btn">new note</a>
-
-        <div class="input-field col s6 center">
-            <label for="search"></label><input type="text" id="search" onkeyup="searches()" placeholder="Search for names..">
-        </div>
+        <#if notes?size != 0>
+            <a href="<@spring.url '/note/new'/>" class="col s2 right waves-effect waves-light btn">new note</a>
+            <div class="input-field col s6 center">
+                <label for="search"></label><input type="text" id="search" onkeyup="searches()" placeholder="Search for names..">
+            </div>
+            <#else>
+                <ul class="row">
+                    <a href="<@spring.url '/note/new'/>" class="col s2 offset-s5 waves-effect waves-light btn">new note</a>
+                </ul>
+        </#if>
     </ul>
 
 <#-- LIST NOTES -->
@@ -48,7 +53,7 @@
                             <p><span class="teal-text">Group: </span>${note.group.name}</p>
                         </div>
                         <div class="card-action">
-                            <a class="teal-text" href="">SHOW</a>
+                            <a class="teal-text" href="<@spring.url '/note/show?note=${note.id}'/>">SHOW</a>
                             <a class="year-text" href="<@spring.url '/note/edit?note=${note.id}'/>">EDIT</a>
                             <a class="red-text" href="#" onclick="deleteNote(${note.id}, 'all')">DELETE</a>
                         </div>

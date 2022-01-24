@@ -54,7 +54,7 @@
                             <p><span class="teal-text">Group: </span>${note.group.name}</p>
                         </div>
                         <div class="card-action">
-                            <a class="teal-text" href="">SHOW</a>
+                            <a class="teal-text" href="<@spring.url '/note/show?note=${note.id}'/>">SHOW</a>
                             <a class="year-text" href="<@spring.url '/note/edit?note=${note.id}'/>">EDIT</a>
                             <a class="red-text" href="#" onclick="deleteNote(${note.id}, ${group.id})">DELETE</a>
                         </div>

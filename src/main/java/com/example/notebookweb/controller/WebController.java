@@ -82,4 +82,10 @@ public class WebController {
         }
         return "note/all_group_notes";
     }
+
+    @GetMapping("/note/show")
+    public String showNote(@RequestParam Long note, Model model) {
+        model.addAttribute("note", service.getNote(note));
+        return "/note/show_note";
+    }
 }
