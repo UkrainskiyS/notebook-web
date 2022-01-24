@@ -1,52 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<#import "/spring.ftl" as spring />
-<link rel="stylesheet" href="<@spring.url '/css/text.css'/>">
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Note book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <#import "/spring.ftl" as spring />
+    <title>Note Book</title>
 </head>
 <body>
-<#-- SHAPKA -->
-<nav>
-    <div class="nav-wrapper teal row">
-        <div class="container">
-            <a href="/" class="brand-logo">Note book</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="<@spring.url '/note/new'/>">NEW</a></li>
-                <li><a href="<@spring.url '/note/all'/>">NOTES</a></li>
-                <li><a href="<@spring.url '/group/all'/>">GROUPS</a></li>
-            </ul>
+<!-- HEADER -->
+<nav class="navbar-primary bg-primary">
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+    <div class="container-fluid me-md-auto">
+        <a class="navbar-brand text-light" href="/">Note Book</a>
+        <div class="navbar-nav">
+            <a class="nav-link text-light" href="<@spring.url '/note/new'/>">NEW</a>
+            <a class="nav-link text-light" href="<@spring.url '/note/all'/>">NOTES</a>
+            <a class="nav-link text-light" href="<@spring.url '/group/all'/>">GROUPS</a>
         </div>
     </div>
 </nav>
-
-<div class="container">
-
-    <h3 class="center-align"><span class="teal-text text-lighten-2">Last 10 notes</span></h3>
-    <ul class="collapsible expandable">
-        <#list notes as note>
-            <li>
-                <div class="collapsible-header"><span class="teal-text text-lighten-2">${note.group.name}</span>: ${note.name}</div>
-                <div class="collapsible-body"><p id="note_text">${note.text}</p></div>
-            </li>
-        </#list>
-    </ul>
-
 </div>
-<script src="<@spring.url '/js/script.js'/>"></script>
+</nav>
+
+<!-- LAST 10 NOTES -->
+<div class="container">
+    <p class="h3 text-center" style="padding-top: 25px;">Last ten notes</p>
+
+    <#list notes as note>
+    <div class="accordion" style="padding-top: 10px;" id="accordionPanelsStayOpenExample${note.id}">
+        <div class="accordion-item collapsible">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne${note.id}">
+                <button id="btn${note_index}" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${note.id}" aria-expanded="true" aria-controls="collapse${note.id}">
+                    <span class="text-primary" style="white-space: pre">${note.group.name?upper_case}: </span>${note.name}
+                </button>
+            </h2>
+            <div id="collapse${note.id}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne${note.id}">
+                <div id="${note_index}" class="accordion-body"></div>
+            </div>
+        </div>
+    </div>
+
+        <span id="test${note_index}">${note.text}</span>
+    </#list>
+</div>
+<!-- JS -->
+<script src="<@spring.url '/bootstrap/js/bootstrap.js'/>"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
 <script src="<@spring.url '/js/main.js'/>"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script>
-    M.AutoInit(undefined);
-    const elem = document.querySelector('.collapsible.expandable');
-    const instance = M.Collapsible.init(elem, {
-        accordion: false
-    });
-</script>
+<script>refactor(${notes?size})</script>
 </body>
 </html>

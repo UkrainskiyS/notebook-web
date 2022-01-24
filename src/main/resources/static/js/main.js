@@ -1,14 +1,12 @@
-// async function searchNote() {
-//     await fetch('/api/search?' + new URLSearchParams({
-//         note: $('#search').val()})
-//     )
-//         .then(function (response) {
-//         return response.json();
-//     })
-//         .then(function (data) {
-//             console.log('data', data);
-//         });
-// }
+function refactor(size) {
+    let converter = new showdown.Converter();
+    // converter.setFlavor('github');
 
+    for (let i = 0; i < size; i++) {
+        let text = document.getElementById('test' + i).textContent;
+        $('#test' + i).remove();
+        $('#' + i).html(converter.makeHtml(text));
+    }
+}
 
 
