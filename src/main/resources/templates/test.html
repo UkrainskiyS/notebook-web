@@ -2,42 +2,55 @@
 <html lang="en">
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<link rel="stylesheet" href="../static/css/style.css">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
-<label for="text"></label><p id="text"></p>
-
-<button onclick="getMark('## Ссылка\n'+
-'https://t.me/notebookmanager_bot\n'+
-'\n'+
-'## Клонировать репозиторий\n'+
-'https://git.heroku.com/notebook-bot.git\n'+
-'\n'+
-'## Внести изменения\n'+
-'\n'+
-'## Пушить:\n'+
-'>  git add .\n'+
-'>  git commit -m \n'+
-'> git push heroku master\n'+
-'> heroku ps:scale web=1\n'+
-'\n'+
-'## Создать переменную окружения\n'+
-'heroku config:set' +
-        '\n'+
-        '## Логи\n'+
-        '> Онлайн https://dashboard.heroku.com/apps/notebook-bot/logs\n'+
-        '> Консоль heroku logs --tail')"></button>
+<nav>
+    <div class="nav-wrapper teal">
+        <div class="container">
+            <a href="/" class="brand-logo">Note book</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="<@spring.url '/note/new'/>">NOTES</a></li>
+                <li><a href="<@spring.url '/group/all'/>">GROUPS</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 
-<script src="../static/js/script.js"></script>
-<script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card grey lighten-5">
+                <div class="card-content black-text">
+                    <span class="card-title">Card Title</span>
+                    <p>I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="red-text">This is a link</a>
+                    <a href="#">This is a link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+<script>
+M.AutoInit(undefined);
+$(document).ready(function(){
+    $('.modal').modal();
+});
+</script>
 </body>
 </html>

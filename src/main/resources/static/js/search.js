@@ -3,7 +3,7 @@
  */
 function searches() {
     let input = $('#search').val().toUpperCase();
-    let groups = document.getElementById("elements").getElementsByTagName('li');
+    let groups = document.getElementById("elements").getElementsByClassName('searches');
 
     for (let i = 0; i < groups.length; i++) {
         let a = groups[i].getElementsByClassName("element_name")[0];

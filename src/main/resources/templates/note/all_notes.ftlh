@@ -1,76 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<#import "/spring.ftl" as spring />
-<link rel="stylesheet" href="<@spring.url '/css/text.css'/>">
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Note book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <#import "/spring.ftl" as spring />
+    <link href="<@spring.url '/bootstrap/css/bootstrap.css' />" rel="stylesheet" />
+    <title>Note Book</title>
 </head>
 <body>
-<#-- SHAPKA -->
-<nav>
-    <div class="nav-wrapper teal row">
-        <div class="container">
-            <a href="/" class="brand-logo">Note book</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="<@spring.url '/note/new'/>">NEW</a></li>
-                <li class="active"><a href="<@spring.url '/note/all'/>">NOTES</a></li>
-                <li><a href="<@spring.url '/group/all'/>">GROUPS</a></li>
-            </ul>
-        </div>
+
+<!-- HEADER -->
+<nav class="navbar-primary bg-primary">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+            <div class="container-fluid me-md-auto">
+                <a class="navbar-brand text-light" href="/">Note Book</a>
+                <div class="navbar-nav">
+                    <a class="nav-link text-light" href="<@spring.url '/note/new'/>">NEW</a>
+                    <a class="nav-link text-light active" href="<@spring.url '/note/all'/>">NOTES</a>
+                    <a class="nav-link text-light" href="<@spring.url '/group/all'/>">GROUPS</a>
+                </div>
+            </div>
+        </nav>
     </div>
 </nav>
 
-<div class="container">
+<div class="container" style="padding-top: 30px">
+    <div class="row">
 
-    <#-- DESCRIPTION AND BUTTON NEW GROUP -->
-    <ul class="row">
+        <#-- SEARCH AND BUTTON NEW GROUP -->
         <#if notes?size != 0>
-            <a href="<@spring.url '/note/new'/>" class="col s2 right waves-effect waves-light btn">new note</a>
-            <div class="input-field col s6 center">
-                <label for="search"></label><input type="text" id="search" onkeyup="searches()" placeholder="Search for names..">
+            <div class="col-6">
+                <input id="search" onkeyup="searches()" class="form-control form-control-lg" type="text" placeholder="Search for names.." aria-label=".form-control-lg example">
             </div>
-            <#else>
-                <ul class="row">
-                    <a href="<@spring.url '/note/new'/>" class="col s2 offset-s5 waves-effect waves-light btn">new note</a>
-                </ul>
+            <div class="col-6">
+                <a class="btn btn-primary btn-lg offset-9" href="<@spring.url '/note/new'/>" role="button">NEW NOTE</a>
+            </div>
+        <#else>
+            <div class="col-12">
+                <a class="btn btn-primary btn-lg offset-5" href="<@spring.url '/note/new'/>" role="button">NEW NOTE</a>
+            </div>
         </#if>
-    </ul>
+    </div>
 
-<#-- LIST NOTES -->
-    <ul id="elements" class="row">
+    <!-- LIST NOTES -->
+    <div id="elements" class="row" style="padding-top: 20px">
+
         <#list notes as note>
-            <li>
-                <div class="col s12 m6">
-                    <div class="card grey lighten-5">
-                        <div class="card-content black-text">
-                            <span class="element_name card-title">${note.name?upper_case}</span>
-                            <p><span class="teal-text">Last update: </span>${note.dateTime}</p>
-                            <p><span class="teal-text">Group: </span>${note.group.name}</p>
-                        </div>
-                        <div class="card-action">
-                            <a class="teal-text" href="<@spring.url '/note/show?note=${note.id}'/>">SHOW</a>
-                            <a class="year-text" href="<@spring.url '/note/edit?note=${note.id}'/>">EDIT</a>
-                            <a class="red-text" href="#" onclick="deleteNote(${note.id}, 'all')">DELETE</a>
+            <div class="col-4 searches" style="padding: 10px 10px">
+                <div class="card">
+                    <h5 class="element_name card-header text-center">${note.name?upper_case}</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="text-primary">GROUP:</span>${" " + note.group.name}</h5>
+                        <p class="card-text"><span class="text-primary">LAST UPDATE:</span>${" " + note.dateTime}</p>
+                        <div class="text-center">
+                            <a href="<@spring.url '/note/show?note=${note.id}'/>" class="btn btn-primary col-3">SHOW</a>
+                            <a href="<@spring.url '/note/edit?note=${note.id}'/>" class="btn btn-secondary col-3 offset-1">EDIT</a>
+                            <a href="#" class="btn btn-danger col-3 offset-1" onclick="deleteNote(${note.id}, 'all')">DELETE</a>
                         </div>
                     </div>
                 </div>
-            </li>
+            </div>
         </#list>
-    </ul>
 
+    </div>
 </div>
+<!-- JS -->
+<script src="<@spring.url '/bootstrap/js/bootstrap.js'/>"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
 <script src="<@spring.url '/js/notes.js'/>"></script>
 <script src="<@spring.url '/js/search.js'/>"></script>
-<script src="<@spring.url '/js/script.js'/>"></script>
-<script src="<@spring.url '/js/main.js'/>"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script>
-    M.AutoInit(undefined);
-</script>
 </body>
 </html>
