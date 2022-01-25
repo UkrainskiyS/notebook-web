@@ -3,7 +3,8 @@ drop table if exists groups;
 
 create table groups (
     id int primary key generated always as identity,
-    name varchar not null
+    name varchar not null,
+    description text
 );
 --
 insert into groups (name) values('test group');

@@ -15,11 +15,13 @@ import java.util.List;
 @Table(name = "groups")
 public class Group {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank
     private String name;
+
+    private String description;
 
     @OneToMany(mappedBy = "group")
     private List<Note> notes;

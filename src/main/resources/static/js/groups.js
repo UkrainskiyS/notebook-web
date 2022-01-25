@@ -3,7 +3,6 @@
  * @param group
  * @returns {Promise<void>}
  */
-
 async function deleteGroup(group) {
     await fetch('/api/group/delete?' + new URLSearchParams({
         id: group
@@ -20,7 +19,11 @@ async function deleteGroup(group) {
 async function create() {
     let object = {
         name: $('#name_new_group').val(),
+        description: $('#description').val()
     };
+
+    console.log(object.name);
+    console.log(object.description);
 
     if (object.name.trim().length > 0) {
         $('#modal_body').remove();
@@ -32,7 +35,6 @@ async function create() {
             body: JSON.stringify(object)
         });
 
-
         if (response.ok) {
             window.location.replace('/group/all');
         } else {
@@ -41,18 +43,7 @@ async function create() {
     }
 }
 
-function createGroup() {
-    $('#modal1').removeClass('red').append('<div id="modal_body"></div>');
-    $('#modal_body').append('<div id="modal2" class="modal-content"></div><div id="modal3" class="modal-footer"></div>');
-    $('#modal2').append('<h4 class="center-align">New group</h4><form id="input" class="center-align"></form>');
-    $('#input').append('<div class="input-field"><label for="name_new_group">Name</label><input required id="name_new_group" type="text"></div>')
-    $('#modal3').append('<a onclick="create()" class="waves-effect waves-green btn-flat">Save</a>')
-        .append('<a class="modal-close waves-effect waves-green btn-flat">cancel</a>');
-}
-
 function groupExist() {
-    $('#modal1').addClass('red').append('<div id="modal_body"></div>');
-    $('#modal_body').append('<div id="modal2" class="modal-content white-text"></div><div id="modal3" class="modal-footer red white-text"></div>');
-    $('#modal2').append('<h4 class="center-align">Group with this name exist!</h4>');
-    $('#modal3').append('<a onclick="$(\'#modal_body\').remove(); createGroup()" class="waves-effect waves-green btn-flat white-text">Agree</a>');
+    const myModal = new bootstrap.Modal(document.getElementById('exampleModalToggle2'))
+    myModal.show(true);
 }

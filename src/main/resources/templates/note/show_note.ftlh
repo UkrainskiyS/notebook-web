@@ -71,7 +71,7 @@
 <script src="<@spring.url '/js/script.js'/>"></script>
 <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<#--<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>-->
 <script>
     getMark();
 </script>
