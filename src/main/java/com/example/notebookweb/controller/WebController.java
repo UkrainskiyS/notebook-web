@@ -42,7 +42,7 @@ public class WebController {
     @GetMapping("/note/edit")
     public String editNote(@RequestParam Long note, Model model) {
         model.addAttribute("note", service.getNote(note));
-        return "note/edit_note";
+        return "show_note";
     }
 
     @PostMapping("/note/new")

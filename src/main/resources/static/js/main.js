@@ -9,4 +9,13 @@ function refactor(size) {
     }
 }
 
+function converter() {
+    let converter = new showdown.Converter();
+    converter.setFlavor('github');
+
+    let text = document.getElementById('test').textContent;
+    $('#test').remove();
+    $('#text').html(converter.makeHtml(text));
+}
+
 

@@ -4,6 +4,14 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" xmlns:form="http://www.w3.org/1999/html">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<style>
+    #test {
+        display: none;
+    }
+    p {
+        padding: 15px;
+    }
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <#import "/spring.ftl" as spring />
 <head>
@@ -40,24 +48,32 @@
                 <input disabled value="${note.name}" id="name" type="text" class="validate"><label for="name">Name</label>
             </div>
         </div>
-        <p><label><textarea id="text" name="text">${note.text}</textarea></label></p>
+        <div class="row">
+            <div class="input-field col s12">
+                <input disabled value="${note.dateTime}" id="date" type="text" class="validate"><label for="date">Last update</label>
+            </div>
+        </div>
+        <div class="col s12">
+            <p class="z-depth-1" id="text"></p>
+        </div>
     </form>
 
     <div class="row">
-        <a class="col s2 waves-effect waves-light btn modal-trigger" href="#modal1" onclick="updateNote(${note.id})">Save</a>
-        <a class="col s1 waves-effect waves-light btn red offset-s9" onclick="history.back();">cancel</a>
+        <a class="col s1 waves-effect waves-light btn" href="<@spring.url '/note/edit?note=${note.id}'/>">edit</a>
+        <a class="col s1 waves-effect waves-light btn red offset-s9" onclick="history.back();">back</a>
     </div>
+    <span id="test">${note.text}</span>
 
-    <div id="modal1" class="modal"></div>
 </div>
 <script src="<@spring.url '/js/notes.js'/>"></script>
 <script src="<@spring.url '/js/main.js'/>"></script>
 <script src="<@spring.url '/js/new_note.js'/>"></script>
+<script src="<@spring.url '/js/script.js'/>"></script>
+<script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<#--<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>-->
 <script>
-    let simplemde = new SimpleMDE();
-    M.AutoInit(undefined);
+    getMark();
 </script>
 </body>
 </html>

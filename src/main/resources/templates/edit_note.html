@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <#import "/spring.ftl" as spring />
     <link href="<@spring.url '/bootstrap/css/bootstrap.css' />" rel="stylesheet" />
-<#--    <link href="../../static/bootstrap/css/bootstrap.css" rel="stylesheet" />-->
+    <#--    <link href="../../static/bootstrap/css/bootstrap.css" rel="stylesheet" />-->
     <title>Note Book</title>
 </head>
 <body>
@@ -28,32 +28,26 @@
 
 <div class="container" style="padding-top: 30px">
     <div class="mb-3">
-        <label for="gr" class="form-label">Group</label>
-            <input id="gr" class="form-control" type="text" value="${note.group.name}" disabled readonly>
+        <label class="form-label">Group</label>
+        <input class="form-control" type="text" value="Group" aria-label="Group" disabled readonly>
     </div>
     <div class="mb-3">
-        <label for="nm" class="form-label">Name note</label>
-            <input id="nm" class="form-control" type="text" value="${note.name}" disabled readonly>
+        <label class="form-label">Name note</label>
+        <input class="form-control" type="text" value="Name" aria-label="Group" disabled readonly>
     </div>
 
-    <div id="text" class="border" style="padding: 15px"></div>
+    <div id="text"></div>
     <span id="test" style="display: none">${note.text}</span>
-
-    <div class="row" style="padding: 20px 0">
-        <a class="btn btn-secondary col-1 offset-1" href="<@spring.url '/note/edit?note=${note.id}'/>" role="button">EDIT</a>
-        <a class="btn btn-danger col-1 offset-8" href="" onclick="deleteNote(${note.id}, 'all')" role="button">DELETE</a>
-    </div>
 </div>
 <!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="<@spring.url '/bootstrap/js/bootstrap.js'/>"></script>
 <#--<script src="../../static/bootstrap/js/bootstrap.js"></script>-->
 <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
 <script src="<@spring.url '/js/groups.js'/>"></script>
-<script src="<@spring.url '/js/notes.js'/>"></script>
-<script src="<@spring.url '/js/main.js'/>"></script>
 <#--<script src="../../static/js/groups.js"></script>-->
+<script src="<@spring.url '/js/search.js'/>"></script>
 <#--<script src="../../static/js/search.js"></script>-->
-<script>converter()</script>
 </body>
 </html>

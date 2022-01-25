@@ -29,20 +29,20 @@
     <p class="h3 text-center" style="padding-top: 25px;">Last ten notes</p>
 
     <#list notes as note>
-    <div class="accordion" style="padding-top: 10px;" id="accordionPanelsStayOpenExample${note.id}">
-        <div class="accordion-item collapsible">
-            <h2 class="accordion-header" id="panelsStayOpen-headingOne${note.id}">
-                <button id="btn${note_index}" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${note.id}" aria-expanded="true" aria-controls="collapse${note.id}">
-                    <span class="text-primary" style="white-space: pre">${note.group.name?upper_case}: </span>${note.name}
-                </button>
-            </h2>
-            <div id="collapse${note.id}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne${note.id}">
-                <div id="${note_index}" class="accordion-body"></div>
+        <div class="accordion" style="padding-top: 10px;" id="accordionPanelsStayOpenExample${note.id}">
+            <div class="accordion-item collapsible">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne${note.id}">
+                    <button id="btn${note_index}" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${note.id}" aria-expanded="true" aria-controls="collapse${note.id}">
+                        <span class="text-primary" style="white-space: pre">${note.group.name?upper_case}: </span>${note.name}
+                    </button>
+                </h2>
+                <div id="collapse${note.id}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne${note.id}">
+                    <div id="${note_index}" class="accordion-body"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-        <span id="test${note_index}">${note.text}</span>
+        <span id="test${note_index}" style="display: none">${note.text}</span>
     </#list>
 </div>
 <!-- JS -->
