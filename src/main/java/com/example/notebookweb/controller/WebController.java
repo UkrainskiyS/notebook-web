@@ -42,7 +42,7 @@ public class WebController {
     @GetMapping("/note/edit")
     public String editNote(@RequestParam Long note, Model model) {
         model.addAttribute("note", service.getNote(note));
-        return "test.html";
+        return "note/edit_note";
     }
 
     @PostMapping("/note/new")
@@ -68,19 +68,6 @@ public class WebController {
                 .sorted(Comparator.comparing(Note::getName))
                 .collect(Collectors.toList()));
         return "note/all_notes";
-    }
-
-    @GetMapping("/note/group")
-    public String allGroupNotes(@RequestParam Long group, Model model) {
-        List<Note> notes = service.getAllGroupNotes(group).stream()
-                .sorted(Comparator.comparing(Note::getName))
-                .collect(Collectors.toList());
-
-        model.addAttribute("notes", notes);
-        if (!notes.isEmpty()) {
-            model.addAttribute("group", notes.get(0).getGroup());
-        }
-        return "note/all_group_notes";
     }
 
     @GetMapping("/note/show")

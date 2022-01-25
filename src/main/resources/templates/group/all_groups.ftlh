@@ -50,7 +50,11 @@
         <div class="card">
             <h5 class="element_name card-header text-center">${group.name?upper_case}</h5>
             <div class="card-body">
-                <p class="card-text">${group.description}</p>
+                <#if group.description??>
+                     <p class="card-text">${group.description}</p>
+                    <#else>
+                        <p class="card-text"></p>
+                </#if>
                 <div class="text-center row">
                     <div class="col-6">
                         <div class="dropdown">
