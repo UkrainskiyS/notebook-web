@@ -46,12 +46,4 @@ public class Note {
         dateTime = LocalDateTime.now(ZoneId.of("Europe/Moscow"));
         this.text = text;
     }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "\"group\": \"" + group.getName() +
-                "\", \"name\": \"" + name + '\"' +
-                '}';
-    }
 }

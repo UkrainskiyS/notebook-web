@@ -14,7 +14,7 @@ async function getMessage() {
         return;
     }
 
-    let response = await fetch('/note/new', {
+    let response = await fetch('/api/note/new', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
