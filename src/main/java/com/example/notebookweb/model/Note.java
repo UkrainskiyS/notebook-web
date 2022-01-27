@@ -17,6 +17,9 @@ public class Note {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @Column(name = "user_id")
+  private Long userId;
+
   @ManyToOne
   @JoinColumn(name = "group_id", nullable = false)
   private Group group;
@@ -30,7 +33,8 @@ public class Note {
   @Column(nullable = false)
   private String text;
 
-  public Note(Group group, LocalDateTime dateTime, String name, String text) {
+  public Note(Long userId, Group group, LocalDateTime dateTime, String name, String text) {
+    this.userId = userId;
     this.group = group;
     this.dateTime = dateTime;
     this.name = name;

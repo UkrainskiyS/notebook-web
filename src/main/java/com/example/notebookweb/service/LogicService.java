@@ -3,8 +3,10 @@ package com.example.notebookweb.service;
 import com.example.notebookweb.logic.Saver;
 import com.example.notebookweb.model.Group;
 import com.example.notebookweb.model.Note;
+import com.example.notebookweb.model.User;
 import com.example.notebookweb.repository.GroupRepository;
 import com.example.notebookweb.repository.NoteRepository;
+import com.example.notebookweb.repository.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -17,15 +19,18 @@ import java.util.Map;
 @Transactional
 @AllArgsConstructor
 public class LogicService {
-  private Saver saver;
-  private NoteRepository noteRepository;
+  private UserRepository userRepository;
   private GroupRepository groupRepository;
+  private NoteRepository noteRepository;
+  private Saver saver;
 
-  public boolean save(Object object) {
+  public boolean save(String username, Object object) {
+    User user = userRepository.findUserByUsername(username);
+
     if (object instanceof Group) {
-      return saver.saveGroup((Group) object);
+      return saver.saveGroup(user, (Group) object);
     } else {
-      return saver.saveNote(new ObjectMapper().convertValue(object, new TypeReference<>() {}));
+      return saver.saveNote(user, new ObjectMapper().convertValue(object, new TypeReference<>() {}));
     }
   }
 

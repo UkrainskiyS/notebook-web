@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Map;
 
 @RestController
@@ -42,8 +43,8 @@ public class RESTController {
    * @return Status code 400 if name exist, else 200
    */
   @PostMapping("/group/new")
-  public ResponseEntity<?> newGroup(@RequestBody Group group) {
-    if (logicService.save(group)) {
+  public ResponseEntity<?> newGroup(Principal principal, @RequestBody Group group) {
+    if (logicService.save(principal.getName(), group)) {
       return new ResponseEntity<>(HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -57,8 +58,8 @@ public class RESTController {
    * @return Status code 400 if name exist, else 200
    */
   @PostMapping("/note/new")
-  public ResponseEntity<?> saveNote(@RequestBody Map<String, String> request) {
-    if (logicService.save(request)) {
+  public ResponseEntity<?> saveNote(Principal principal, @RequestBody Map<String, String> request) {
+    if (logicService.save(principal.getName(), request)) {
       return new ResponseEntity<>(HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -1,18 +1,16 @@
 package com.example.notebookweb.repository;
 
 import com.example.notebookweb.model.Group;
+import com.example.notebookweb.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 public interface GroupRepository extends JpaRepository<Group, Long> {
 
-  /** @return All group's names */
-  @Query(value = "select name from groups;", nativeQuery = true)
-  List<String> findAllNames();
+  List<Group> findAllByUser(User user);
 
-  Group getByName(String name);
+  Group getByUserAndName(User user, String name);
 
-  boolean existsByName(String name);
+  boolean existsByUserAndName(User user, String name);
 }

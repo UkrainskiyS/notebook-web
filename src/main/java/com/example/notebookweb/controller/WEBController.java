@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 /** Controller for web-pages */
 @Controller
 @AllArgsConstructor
@@ -19,10 +21,8 @@ public class WEBController {
    * @return Home page
    */
   @GetMapping
-  public String main(Model model) {
-    model.addAttribute("notes", getterService.getLastTen());
-    System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
-
+  public String main(Principal principal, Model model) {
+    model.addAttribute("notes", getterService.getLastTen(principal.getName()));
     return "main";
   }
 
@@ -31,8 +31,8 @@ public class WEBController {
    * @return Page with redactor
    */
   @GetMapping("/note/new")
-  public String newNote(Model model) {
-    model.addAttribute("groups", getterService.getAllGroupNames());
+  public String newNote(Principal principal, Model model) {
+    model.addAttribute("groups", getterService.getAllGroupNames(principal.getName()));
     return "note/new_note";
   }
 
@@ -58,14 +58,14 @@ public class WEBController {
   }
 
   @GetMapping("/group/all")
-  public String allGroups(Model model) {
-    model.addAttribute("groups", getterService.getAllGroups());
+  public String allGroups(Principal principal, Model model) {
+    model.addAttribute("groups", getterService.getAllGroups(principal.getName()));
     return "group/all_groups";
   }
 
   @GetMapping("/note/all")
-  public String allNotes(Model model) {
-    model.addAttribute("notes", getterService.getAllNotes());
+  public String allNotes(Principal principal, Model model) {
+    model.addAttribute("notes", getterService.getAllNotes(principal.getName()));
     return "note/all_notes";
   }
 }

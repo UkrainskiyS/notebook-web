@@ -1,5 +1,6 @@
 package com.example.notebookweb.authentication;
 
+import com.example.notebookweb.configuration.WebConfig;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -15,13 +15,14 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+  private WebConfig webConfig;
   private DataSource dataSource;
 
   @Autowired
   public void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.jdbcAuthentication()
         .dataSource(dataSource)
-        .passwordEncoder(NoOpPasswordEncoder.getInstance())
+        .passwordEncoder(webConfig.encoder())
         .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?")
         .authoritiesByUsernameQuery("SELECT username, enabled FROM users WHERE username=?");
   }
