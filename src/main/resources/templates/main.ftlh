@@ -18,6 +18,7 @@
             <a class="nav-link text-light" href="<@spring.url '/note/new'/>">NEW</a>
             <a class="nav-link text-light" href="<@spring.url '/note/all'/>">NOTES</a>
             <a class="nav-link text-light" href="<@spring.url '/group/all'/>">GROUPS</a>
+            <a class="nav-link text-warning" href="<@spring.url '/login?logout'/>">LOGOUT</a>
         </div>
     </div>
 </nav>

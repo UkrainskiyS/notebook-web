@@ -27,7 +27,7 @@ public class Note {
   @Column(nullable = false)
   private String name;
 
-  @Column(nullable = false, length = 3000)
+  @Column(nullable = false)
   private String text;
 
   public Note(Group group, LocalDateTime dateTime, String name, String text) {

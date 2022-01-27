@@ -18,6 +18,10 @@ public class Group {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @ManyToOne
+  @JoinColumn(name = "user_id", nullable = false)
+  private User user;
+
   @NotBlank private String name;
 
   private String description;

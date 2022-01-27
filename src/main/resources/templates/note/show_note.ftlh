@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <#import "/spring.ftl" as spring />
     <link href="<@spring.url '/bootstrap/css/bootstrap.css' />" rel="stylesheet" />
-<#--    <link href="../../static/bootstrap/css/bootstrap.css" rel="stylesheet" />-->
     <title>Note Book</title>
 </head>
 <body>
@@ -20,6 +19,7 @@
                     <a class="nav-link text-light" href="<@spring.url '/note/new'/>">NEW</a>
                     <a class="nav-link text-light active" href="<@spring.url '/note/all'/>">NOTES</a>
                     <a class="nav-link text-light" href="<@spring.url '/group/all'/>">GROUPS</a>
+                    <a class="nav-link text-warning" href="<@spring.url '/login?logout'/>">LOGOUT</a>
                 </div>
             </div>
         </nav>
@@ -46,14 +46,11 @@
 </div>
 <!-- JS -->
 <script src="<@spring.url '/bootstrap/js/bootstrap.js'/>"></script>
-<#--<script src="../../static/bootstrap/js/bootstrap.js"></script>-->
 <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
 <script src="<@spring.url '/js/groups.js'/>"></script>
 <script src="<@spring.url '/js/notes.js'/>"></script>
 <script src="<@spring.url '/js/main.js'/>"></script>
-<#--<script src="../../static/js/groups.js"></script>-->
-<#--<script src="../../static/js/search.js"></script>-->
 <script>converter()</script>
 </body>
 </html>

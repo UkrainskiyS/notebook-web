@@ -2,6 +2,7 @@ package com.example.notebookweb.controller;
 
 import com.example.notebookweb.service.GetterService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,8 @@ public class WEBController {
   @GetMapping
   public String main(Model model) {
     model.addAttribute("notes", getterService.getLastTen());
+    System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
+
     return "main";
   }
 
@@ -44,6 +47,16 @@ public class WEBController {
     return "note/edit_note";
   }
 
+  /**
+   * @param note Id note
+   * @return Page with note
+   */
+  @GetMapping("/note/show")
+  public String showNote(@RequestParam Long note, Model model) {
+    model.addAttribute("note", getterService.getNote(note));
+    return "/note/show_note";
+  }
+
   @GetMapping("/group/all")
   public String allGroups(Model model) {
     model.addAttribute("groups", getterService.getAllGroups());
@@ -54,15 +67,5 @@ public class WEBController {
   public String allNotes(Model model) {
     model.addAttribute("notes", getterService.getAllNotes());
     return "note/all_notes";
-  }
-
-  /**
-   * @param note Id note
-   * @return Page with note
-   */
-  @GetMapping("/note/show")
-  public String showNote(@RequestParam Long note, Model model) {
-    model.addAttribute("note", getterService.getNote(note));
-    return "/note/show_note";
   }
 }
