@@ -2,7 +2,6 @@ package com.example.notebookweb.controller;
 
 import com.example.notebookweb.service.GetterService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +22,7 @@ public class WEBController {
   @GetMapping
   public String main(Principal principal, Model model) {
     model.addAttribute("notes", getterService.getLastTen(principal.getName()));
+    model.addAttribute("username", principal.getName());
     return "main";
   }
 
@@ -33,6 +33,7 @@ public class WEBController {
   @GetMapping("/note/new")
   public String newNote(Principal principal, Model model) {
     model.addAttribute("groups", getterService.getAllGroupNames(principal.getName()));
+    model.addAttribute("username", principal.getName());
     return "note/new_note";
   }
 
@@ -42,8 +43,9 @@ public class WEBController {
    * @return Page with editor for this note
    */
   @GetMapping("/note/edit")
-  public String editNote(@RequestParam Long note, Model model) {
+  public String editNote(Principal principal, @RequestParam Long note, Model model) {
     model.addAttribute("note", getterService.getNote(note));
+    model.addAttribute("username", principal.getName());
     return "note/edit_note";
   }
 
@@ -52,20 +54,23 @@ public class WEBController {
    * @return Page with note
    */
   @GetMapping("/note/show")
-  public String showNote(@RequestParam Long note, Model model) {
+  public String showNote(Principal principal, @RequestParam Long note, Model model) {
     model.addAttribute("note", getterService.getNote(note));
+    model.addAttribute("username", principal.getName());
     return "/note/show_note";
   }
 
   @GetMapping("/group/all")
   public String allGroups(Principal principal, Model model) {
     model.addAttribute("groups", getterService.getAllGroups(principal.getName()));
+    model.addAttribute("username", principal.getName());
     return "group/all_groups";
   }
 
   @GetMapping("/note/all")
   public String allNotes(Principal principal, Model model) {
     model.addAttribute("notes", getterService.getAllNotes(principal.getName()));
+    model.addAttribute("username", principal.getName());
     return "note/all_notes";
   }
 }

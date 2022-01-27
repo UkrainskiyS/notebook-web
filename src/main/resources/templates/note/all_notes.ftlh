@@ -19,7 +19,14 @@
                     <a class="nav-link text-light" href="<@spring.url '/note/new'/>">NEW</a>
                     <a class="nav-link text-light active" href="<@spring.url '/note/all'/>">NOTES</a>
                     <a class="nav-link text-light" href="<@spring.url '/group/all'/>">GROUPS</a>
-                    <a class="nav-link text-warning" href="<@spring.url '/login?logout'/>">LOGOUT</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-warning dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            ${username}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="nav-link text-danger" href="<@spring.url '/login?logout'/>">LOGOUT</a>
+                        </ul>
+                    </li>
                 </div>
             </div>
         </nav>
