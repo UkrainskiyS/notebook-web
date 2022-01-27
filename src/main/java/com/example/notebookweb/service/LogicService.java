@@ -17,31 +17,31 @@ import java.util.Map;
 @Transactional
 @AllArgsConstructor
 public class LogicService {
-    private Saver saver;
-    private NoteRepository noteRepository;
-    private GroupRepository groupRepository;
+  private Saver saver;
+  private NoteRepository noteRepository;
+  private GroupRepository groupRepository;
 
-    public boolean save(Object object) {
-        if (object instanceof Group) {
-            return saver.saveGroup((Group) object);
-        } else {
-            return saver.saveNote(new ObjectMapper().convertValue(object, new TypeReference<>() {}));
-        }
+  public boolean save(Object object) {
+    if (object instanceof Group) {
+      return saver.saveGroup((Group) object);
+    } else {
+      return saver.saveNote(new ObjectMapper().convertValue(object, new TypeReference<>() {}));
     }
+  }
 
-    public void deleteGroup(Long id) {
-        Group group = groupRepository.getById(id);
-        noteRepository.deleteAllByGroup(group);
-        groupRepository.delete(group);
-    }
+  public void deleteGroup(Long id) {
+    Group group = groupRepository.getById(id);
+    noteRepository.deleteAllByGroup(group);
+    groupRepository.delete(group);
+  }
 
-    public void deleteNote(Long note) {
-        noteRepository.delete(noteRepository.getById(note));
-    }
+  public void deleteNote(Long note) {
+    noteRepository.delete(noteRepository.getById(note));
+  }
 
-    public void updateNote(Map<String, String> map) {
-        Note note = noteRepository.getById(Long.parseLong(map.get("id")));
-        note.update(map.get("text"));
-        noteRepository.save(note);
-    }
+  public void updateNote(Map<String, String> map) {
+    Note note = noteRepository.getById(Long.parseLong(map.get("id")));
+    note.update(map.get("text"));
+    noteRepository.save(note);
+  }
 }

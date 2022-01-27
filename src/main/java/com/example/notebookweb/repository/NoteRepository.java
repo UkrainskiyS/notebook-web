@@ -9,11 +9,10 @@ import java.util.List;
 
 public interface NoteRepository extends JpaRepository<Note, Long> {
 
-    @Query(value = "select * from notes order by last_update desc limit 10", nativeQuery = true)
-    List<Note> findLastTen();
+  @Query(value = "select * from notes order by last_update desc limit 10", nativeQuery = true)
+  List<Note> findLastTen();
 
-    boolean existsByGroupAndName(Group group, String name);
+  boolean existsByGroupAndName(Group group, String name);
 
-    void deleteAllByGroup(Group group);
-
+  void deleteAllByGroup(Group group);
 }

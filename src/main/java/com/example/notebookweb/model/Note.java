@@ -13,37 +13,37 @@ import java.time.format.DateTimeFormatter;
 @Table(name = "notes")
 @RequiredArgsConstructor
 public class Note {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "group_id", nullable = false)
-    private Group group;
+  @ManyToOne
+  @JoinColumn(name = "group_id", nullable = false)
+  private Group group;
 
-    @Column(name = "last_update")
-    private LocalDateTime dateTime;
+  @Column(name = "last_update")
+  private LocalDateTime dateTime;
 
-    @Column(nullable = false)
-    private String name;
+  @Column(nullable = false)
+  private String name;
 
-    @Column(nullable = false, length = 3000)
-    private String text;
+  @Column(nullable = false, length = 3000)
+  private String text;
 
-    public Note(Group group, LocalDateTime dateTime, String name, String text) {
-        this.group = group;
-        this.dateTime = dateTime;
-        this.name = name;
-        this.text = text;
-    }
+  public Note(Group group, LocalDateTime dateTime, String name, String text) {
+    this.group = group;
+    this.dateTime = dateTime;
+    this.name = name;
+    this.text = text;
+  }
 
-    public String getDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss dd.MM.yyyy");
-        return dateTime.format(formatter);
-    }
+  public String getDateTime() {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss dd.MM.yyyy");
+    return dateTime.format(formatter);
+  }
 
-    public void update(String text) {
-        dateTime = LocalDateTime.now(ZoneId.of("Europe/Moscow"));
-        this.text = text;
-    }
+  public void update(String text) {
+    dateTime = LocalDateTime.now(ZoneId.of("Europe/Moscow"));
+    this.text = text;
+  }
 }

@@ -12,26 +12,26 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class GetterService {
-    private NoteRepository noteRepository;
-    private GroupRepository groupRepository;
+  private NoteRepository noteRepository;
+  private GroupRepository groupRepository;
 
-    public List<Group> getAllGroups() {
-        return groupRepository.findAll();
-    }
+  public List<Group> getAllGroups() {
+    return groupRepository.findAll();
+  }
 
-    public Note getNote(Long id) {
-        return noteRepository.getById(id);
-    }
+  public Note getNote(Long id) {
+    return noteRepository.getById(id);
+  }
 
-    public List<Note> getLastTen() {
-        return noteRepository.findLastTen();
-    }
+  public List<Note> getLastTen() {
+    return noteRepository.findLastTen();
+  }
 
-    public List<String> getAllGroupNames() {
-        return groupRepository.findAllNames();
-    }
+  public List<String> getAllGroupNames() {
+    return groupRepository.findAllNames();
+  }
 
-    public List<Note> getAllNotes() {
-        return noteRepository.findAll();
-    }
+  public List<Note> getAllNotes() {
+    return noteRepository.findAll();
+  }
 }

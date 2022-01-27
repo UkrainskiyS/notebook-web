@@ -14,15 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "groups")
 public class Group {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @NotBlank
-    private String name;
+  @NotBlank private String name;
 
-    private String description;
+  private String description;
 
-    @OneToMany(mappedBy = "group")
-    private List<Note> notes;
+  @OneToMany(mappedBy = "group")
+  private List<Note> notes;
 }

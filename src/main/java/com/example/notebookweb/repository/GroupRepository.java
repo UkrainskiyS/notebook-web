@@ -8,14 +8,11 @@ import java.util.List;
 
 public interface GroupRepository extends JpaRepository<Group, Long> {
 
-    /**
-     * @return All group's names
-     */
+  /** @return All group's names */
+  @Query(value = "select name from groups;", nativeQuery = true)
+  List<String> findAllNames();
 
-    @Query(value = "select name from groups;", nativeQuery = true)
-    List<String> findAllNames();
+  Group getByName(String name);
 
-    Group getByName(String name);
-
-    boolean existsByName(String name);
+  boolean existsByName(String name);
 }
